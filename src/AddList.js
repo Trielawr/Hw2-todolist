@@ -5,7 +5,6 @@ const AddList = () => {
     const [items, setItems] = useState([]);
     const [input, setInput] = useState('new task');
 
-
     const onClickHandler = () => {
         setItems([...items, input]);
         setInput('new task');
@@ -16,15 +15,14 @@ const AddList = () => {
         setInput(value);
     }
 
-
-
     return (
-        <><input onChange={onChangeHandler} value={input} />
-            <p>{items.length}</p>
+        <>
+            <input onChange={ onChangeHandler } value={input} />
+            <p>{ items.length }</p>
             <ul>
-                {items.map(element => <AddListItems items={items} element={element} />)}
+                { items.map(element => <AddListItems items={ items } element={ element } />) }
             </ul>
-            <button onClick={onClickHandler}>Add TO DO</button>
+            <button onClick={ onClickHandler }>Add TO DO</button>
         </>
     )
 };
