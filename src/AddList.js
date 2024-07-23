@@ -24,7 +24,7 @@ const AddList = () => {
             <input onChange={ onChangeHandler } value={input} />
             <p>{ items.length }</p>
             <ul>
-                { items.map(element => <AddListItems items={ items } element={ element } onDeleteClick={ deleteListItem } />) }
+                { items.map(({ name, id }) => <AddListItems key={name} name={ name } id={ id } onDeleteClick={ deleteListItem } />) }
             </ul>
             <button onClick={ onClickHandler }>Add TO DO</button>
         </>
