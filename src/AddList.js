@@ -1,13 +1,22 @@
-import { useState } from "react";
+import {useState } from "react";
 import AddListItems from "./AddListItems";
 
-const AddList = () => {
-    const [items, setItems] = useState([]);
-    const [input, setInput] = useState('new task');
 
+const AddList = () => {
+
+    const StartItems = [
+    { id: 0, name: "Add to ID list" },
+    { id: 1, name: "Create Items" },
+    { id: 2, name: "Delete from List" }];
+    
+    let uuid = crypto.randomUUID();
+
+    const [items, setItems] = useState(StartItems);
+    const [input, setInput] = useState('new task');
+ 
     const onClickHandler = () => {
-        setItems([...items, input]);
-        setInput('new task');
+        setItems([...items, { id: uuid, name: input }]);
+        setInput('new task');   
     }
 
     const onChangeHandler = (e) => {
@@ -15,14 +24,27 @@ const AddList = () => {
         setInput(value);
     }
 
+    const onEnterHandler = (e) => {
+        if (e.key === 'Enter') {
+        setItems([...items, {id:uuid,  name: input} ]);
+        setInput('new task');  
+        }
+    }
+
+      const deleteListItems = (id) => {
+        const newItems = items.filter(item => item.id !== id);
+        setItems(newItems);
+    }
+
+  
     return (
         <>
-            <input onChange={ onChangeHandler } value={input} />
+            <input onKeyDown={ onEnterHandler } onChange={ onChangeHandler } value={input} />
             <p>{ items.length }</p>
             <ul>
-                { items.map(element => <AddListItems items={ items } element={ element } />) }
+               { items.map(element => (<AddListItems items={ items } id={ element.id } element={ element.name } onDeleteClick = { () => deleteListItems(element.id) }/>)) }
             </ul>
-            <button onClick={ onClickHandler }>Add TO DO</button>
+            <button type="button" onClick={ onClickHandler }>Add TO DO</button>
         </>
     )
 };
