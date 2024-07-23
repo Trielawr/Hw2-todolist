@@ -15,12 +15,16 @@ const AddList = () => {
         setInput(value);
     }
 
+    const deleteListItem = id => {
+        // some logic for deletion goes here
+    }
+
     return (
         <>
             <input onChange={ onChangeHandler } value={input} />
             <p>{ items.length }</p>
             <ul>
-                { items.map(element => <AddListItems items={ items } element={ element } />) }
+                { items.map(element => <AddListItems items={ items } element={ element } onDeleteClick={ deleteListItem } />) }
             </ul>
             <button onClick={ onClickHandler }>Add TO DO</button>
         </>
