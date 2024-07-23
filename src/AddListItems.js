@@ -1,10 +1,10 @@
 import React from "react";
 
-const AddListItems = ({ element, id, onDeleteClick }) => {
+const AddListItems = ({ name, id, onDeleteClick }) => {
     return (
         <>
-            <li key={`${ props.element }`}>
-                { props.element }
+            <li>
+                { name }
                 <button type="button" onClick={ onDeleteClick(id) }>Delete</button>
             </li>
         </>
