@@ -1,3 +1,4 @@
+import ButtonComponent from "./ButtonComponent";
 import {useState } from "react";
 import AddListItems from "./AddListItems";
 
@@ -31,18 +32,23 @@ const AddList = () => {
         }
     }
 
-      const deleteListItems = (id) => {
+    const deleteListItems = (id) => {
         const newItems = items.filter(item => item.id !== id);
         setItems(newItems);
+          console.log("Delete this Item");
     }
 
   
     return (
         <>
-            <input onKeyDown={ onEnterHandler } onChange={ onChangeHandler } value={input} />
+            <input onKeyDown={ onEnterHandler } onChange={ onChangeHandler } value={ input } />
             <p>{ items.length }</p>
             <ul>
-               { items.map(element => (<AddListItems items={ items } id={ element.id } element={ element.name } onDeleteClick = { () => deleteListItems(element.id) }/>)) }
+                {items.map(element => (
+                    <AddListItems key={ element.id } items={ items } id={ element.id } element={ element.name }>
+                        {<ButtonComponent type={ "button" }  text={ "Delete" } onClick={ () => deleteListItems(element.id) } />}
+                    </AddListItems>
+                ))}
             </ul>
             <button type="button" onClick={ onClickHandler }>Add TO DO</button>
         </>
