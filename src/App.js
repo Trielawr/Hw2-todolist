@@ -1,12 +1,14 @@
-import AddList from './AddList';
+//import AddList from './AddList';
 import './App.css';
+import ClassComponent from './ClassComponent';
 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <AddList />
+        {/* <AddList /> */}
+        <ClassComponent/>
       </header>
     </div >
   );
