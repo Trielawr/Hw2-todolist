@@ -1,0 +1,179 @@
+:root {
+    --primary-btn-bg-color: #007952;
+    --primary-btn-bg-color-hover: #009766;
+    --primary-btn-border-color: #003b28;
+    --primary-btn-text-color: #fff;
+
+    --danger-btn-bg-color: #792300;
+    --danger-btn-bg-color-hover: #b53602;
+    --danger-btn-border-color: #511800;
+    --danger-btn-text-color: #fff;
+
+    --form-element-height: 40px;
+    --border-radius: 5px;
+}
+
+.todo-wrapper {
+    background-color: rgba(0,0,0,0.1);
+    border-radius: var(--border-radius);
+    min-width: 80vw;
+    max-width: 100%;
+    padding: 15px;
+}
+
+@media (max-width: 767px) {
+    .todo-wrapper {
+        max-width: auto;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+.todo-empty-placeholder {
+    border-radius: var(--border-radius);
+    border: 1px dashed currentColor;
+    font-style: italic;
+    font-size: 14px;
+    padding: 15px;
+    color: #eee;
+}
+
+.todo-form {
+    display: flex;
+}
+
+.todo-form:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    background-color: rgba(255,255,255,0.05);
+    border-radius: var(--border-radius);
+    height: var(--form-element-height);
+    transition: opacity 0.2s ease;
+    border: 1px solid #fff;
+    padding: 5px 10px;
+    color: #fff;
+    flex-grow: 1;
+}
+
+.form-control:focus::placeholder {
+    color: transparent;
+}
+
+.form-control:not(:focus) {
+    opacity: 0.75;
+}
+
+.btn {
+    transition: background-color 0.2s ease;
+    min-height: var(--form-element-height);
+    border-radius: var(--border-radius);
+    user-select: none;
+    margin-left: 10px;
+    padding: 5px 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.btn:disabled {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.btn.btn-primary {
+    border: 1px solid var(--primary-btn-border-color);
+    background-color: var(--primary-btn-bg-color);
+    color: var(--primary-btn-text-color);
+}
+
+.btn.btn-primary:hover {
+    background-color: var(--primary-btn-bg-color-hover);
+}
+
+.btn.btn-danger {
+    border: 1px solid var(--danger-btn-border-color);
+    background-color: var(--danger-btn-bg-color);
+    color: var(--danger-btn-text-color);
+}
+
+.btn.btn-danger:hover {
+    background-color: var(--danger-btn-bg-color-hover);
+}
+
+.btn.btn-cross-icon {
+    position: relative;
+    padding-left: 3em;
+}
+
+.btn.btn-cross-icon:before,
+.btn.btn-cross-icon:after {
+    background-color: currentColor;
+    margin-bottom: auto;
+    position: absolute;
+    margin-top: auto;
+    display: block;
+    height: 1.6em;
+    width: 0.2em;
+    left: 1.5em;
+    content: '';
+    bottom: 0;
+    top: 0;
+}
+
+.btn.btn-cross-icon:before {
+    transform: rotate(45deg);
+}
+
+.btn.btn-cross-icon:after {
+    transform: rotate(-45deg);
+}
+
+.todo-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.todo-list:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.todo-list-item {
+    background-color: rgba(255,255,255,0.05);
+    border-radius: var(--border-radius);
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px;
+    text-align: left;
+    font-size: 18px;
+    display: flex;
+}
+
+.todo-list-item:not(:last-child) {
+    margin-bottom: 5px;
+    display: flex;
+    color: #fff;
+}
+
+.todo-list-item button {
+    margin-left: 10px;
+}
+
+.todo-list-item-counter {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.todo-list-item-counter:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.todo-list-item-counter span {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: var(--border-radius);
+    padding: 15px 30px;
+    font-size: 3em;
+    display: block;
+}
