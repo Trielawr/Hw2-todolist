@@ -41,6 +41,7 @@ const AddList = () => {
   
     return (
         <>
+            <p>Created by Functional Component</p>
             <input onKeyDown={ onEnterHandler } onChange={ onChangeHandler } value={ input } />
             <p>{ items.length }</p>
             <ul>

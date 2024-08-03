@@ -45,7 +45,8 @@ class ClassComponent extends Component {
 
     render() {
        return (
-      <>
+           <>
+               <p>Created by Class Component</p>
           <input value={ this.state.input } onChange={ this.onChangeHandler }/> 
                <p>{ this.state.todos.length }</p>
                { this.state.todos.map(element => <AddListItems key={ element.id } id={ element.id } element={ element.todo }>
