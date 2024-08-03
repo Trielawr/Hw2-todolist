@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-function ButtonComponent(props) {
+function ButtonComponent({ additionalClassName, disabled, type, onClick, text }) {
   return (
-    <button type={props.type} onClick={props.onClick}>{props.text}</button>
-    )
+    <button
+      className={ `btn ${additionalClassName || ''}` }
+      disabled={ disabled || null }
+      type={ type || 'button' }
+      onClick={ onClick }
+    >{ text }</button>
+  )
 }
 
-export default ButtonComponent
+export default ButtonComponent;
