@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import AddListItems from './AddListItems';
 import ButtonComponent from './ButtonComponent';
+import styles from './Components.module.css'
+
 
 class ClassComponent extends Component {
     state = {
         uuid: 0,
         todos: [],
         input: "new task",
+        listState : 'false',
     }
 
     componentDidMount() {
@@ -31,6 +34,7 @@ class ClassComponent extends Component {
         this.setState({ uuid: crypto.randomUUID() });
         this.setState({ todos: [...this.state.todos, {id: this.state.uuid, todo: this.state.input}] });
         this.setState({ input: "new task" });
+        this.setState({listState: 'true'});
     }
 
     onDeleteHandler = (id) => {
@@ -41,21 +45,46 @@ class ClassComponent extends Component {
     componentWillUnmount() {
         localStorage.clear();
         this.setState({ todos: [] });
+        this.setState({listState: 'false'});
     }
 
     render() {
        return (
            <>
-               <p>Created by Class Component</p>
-          <input value={ this.state.input } onChange={ this.onChangeHandler }/> 
-               <p>{ this.state.todos.length }</p>
-               { this.state.todos.map(element => <AddListItems key={ element.id } id={ element.id } element={ element.todo }>
-                   <ButtonComponent type={ "button" } text={ "Delete" } onClick={ ()=>this.onDeleteHandler(element.id) } />
-               </AddListItems>) }
+               <h3 className={styles.title}>Created by Class Component</h3>
+               <div className={styles.container}>
+                   <input
+                       value={this.state.input}
+                       onChange={this.onChangeHandler}
+                   /> 
+                   <ButtonComponent
+                       aditionalclassName={ `${styles.button} ` }
+                       type="button"
+                       text="Add Todo"
+                       onClick={this.onClickHandler}
+                   />
+                   <p>Кількість елементів в списку - {this.state.todos.length}</p>
+                   <ul className={`${this.state.todos.length === 0 ? styles.list.empty : styles.list}`}>
+                       {console.log("body",this.state.todos.length)}
+                      {this.state.todos.map(element =>
+                          <AddListItems key={element.id} id={element.id} element={element.todo}>
+                              <ButtonComponent
+                               aditionalclassName={ `${styles.button}` }
+                               type="button"
+                               text="Delete"
+                               onClick={() => this.onDeleteHandler(element.id)}
+                               />
+                          </AddListItems>)
+                       }        
+                   </ul>
                <br />
-               <ButtonComponent type={ "button" } text={ "Add Todo" } onClick={ this.onClickHandler } />
-               <br/>
-               <ButtonComponent type={ "button" } text={ "Clear Todo List" } onClick={ ()=>this.componentWillUnmount() } />
+                   <ButtonComponent
+                       aditionalclassName='btn-del'
+                       type="button"
+                       text="Clear Todo List"
+                       onClick={() => this.componentWillUnmount()}
+                   />
+               </div>
           </>
         )
     }

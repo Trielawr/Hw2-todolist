@@ -1,8 +1,13 @@
 import React from 'react'
+import styles from './Components.module.css'
 
-function ButtonComponent(props) {
+function ButtonComponent({aditionalclassName, type, onClick, text}) {
   return (
-    <button type={props.type} onClick={props.onClick}>{props.text}</button>
+    <button
+      className={ `${styles.button} ${styles.aditionalclassName}` }
+      type={ type }
+      onClick={ onClick }>
+      { text }</button>
     )
 }
 

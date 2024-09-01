@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import AddList from './AddList';
-import './App.css';
+import styles from './App.module.css';
 import ButtonComponent from './ButtonComponent';
 import ClassComponent from './ClassComponent';
+
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className={styles.App}>
       <header>
         {changeComp ? <ClassComponent /> : <AddList />}
         <br/>
