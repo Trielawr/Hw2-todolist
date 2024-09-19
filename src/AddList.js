@@ -56,17 +56,17 @@ const AddList = () => {
                     value={input}
                 />
                 <ButtonComponent
-                    className='button'
+                    aditionalclassName='button'
                     type='button'
                     text="Add Todo"
                     onClick={onClickHandler}
                 />
                 <p>Кількість елементів в списку - {items.length}</p>
-                  <ul className={styles.list}>
+                  <ul className={`${items.length === 0 ? styles.list.empty : styles.list}`}> 
                   {items.map(element => (
                     <AddListItems key={ element.id } items={ items } id={ element.id } element={ element.name }>
                           {<ButtonComponent
-                            className='button'
+                            aditionalclassName='button'
                               type='button'
                               text='Delete'
                               onClick={() => deleteListItems(element.id)}

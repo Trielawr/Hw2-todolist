@@ -1,10 +1,12 @@
 import React from 'react'
-import styles from './Components.module.css'
 
-function ButtonComponent({aditionalclassName, type, onClick, text}) {
+
+function ButtonComponent({ aditionalclassName, type, onClick, text }) {
+  
+  console.log(`button ${aditionalclassName}`);
   return (
     <button
-      className={ `${styles.button} ${styles.aditionalclassName}` }
+      className={ `button ${aditionalclassName}` }
       type={ type }
       onClick={ onClick }>
       { text }</button>

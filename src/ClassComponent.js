@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import AddListItems from './AddListItems';
 import ButtonComponent from './ButtonComponent';
-import styles from './Components.module.css'
+import styles from './Components.module.css';
+
 
 
 class ClassComponent extends Component {
     state = {
         uuid: 0,
         todos: [],
-        input: "new task",
+        input: "new task", 
         listState : 'false',
     }
 
@@ -58,7 +59,7 @@ class ClassComponent extends Component {
                        onChange={this.onChangeHandler}
                    /> 
                    <ButtonComponent
-                       aditionalclassName={ `${styles.button} ` }
+                       aditionalclassName='btn-itemAdded'
                        type="button"
                        text="Add Todo"
                        onClick={this.onClickHandler}
@@ -69,7 +70,7 @@ class ClassComponent extends Component {
                       {this.state.todos.map(element =>
                           <AddListItems key={element.id} id={element.id} element={element.todo}>
                               <ButtonComponent
-                               aditionalclassName={ `${styles.button}` }
+                               aditionalclassName='btn-del'
                                type="button"
                                text="Delete"
                                onClick={() => this.onDeleteHandler(element.id)}

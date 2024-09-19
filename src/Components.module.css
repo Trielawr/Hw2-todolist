@@ -7,13 +7,15 @@
     color: blue;
 }
 
-.btn-addtodo {
-background-color: aquamarine;
+.button.btn_itemAdded {
+background-color: rgb(255, 127, 212);
 }
  
-.button.btn-del {
-    background-color: rgb(243, 9, 9);
-    width: 200px;
+.button {
+    &.btn-del{
+       background-color: rgb(243, 9, 9);
+       width: 200px; 
+    }   
 }
 
 .title {
@@ -31,9 +33,9 @@ background-color: aquamarine;
 .list {
     border: dotted;
     padding: 20px;
+    &.empty {
+         padding: 20px;     
+    }
 }
 
-.list.empty {
-    padding: 20px;
-}
 
