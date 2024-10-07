@@ -1,10 +1,23 @@
 import React from "react";
+import './ItemsComponents.scss';
 
-const AddListItems = (props) => {
+const AddListItems = ({ id, element, children, checked, onChange }) => {
+
     return (
         <>
-            <li key={ props.id }>{ props.element }</li>
-            { props.children }
+            <div className='item'>
+              <li className={ `${(checked === true) ? 'checked ': 'unchecked'}` }  key={ id }>
+                <input 
+                   type="checkbox"
+                   checked={ checked }
+                   onChange ={ onChange }
+                />
+                { element }
+              </li>
+              <div>
+                { children }
+              </div>                
+            </div>
          </>
     )
 };

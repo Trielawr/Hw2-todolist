@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
+import './ButtonComponent.scss'
 
 
-function ButtonComponent({ aditionalclassName, type, onClick, text }) {
-  
-  console.log(`button ${aditionalclassName}`);
+function ButtonComponent({ aditionalclassName, disabled,  type, onClick, text }) {
   return (
     <button
-      className={ `button ${aditionalclassName}` }
+      className={`button ${aditionalclassName}`}
+      disabled={ disabled }
       type={ type }
       onClick={ onClick }>
       { text }</button>

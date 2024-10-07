@@ -1,0 +1,32 @@
+.button {
+    width: 80px;
+    border-radius: 5px;
+    background-color: green;
+}
+
+.button:disabled {
+    background-color: gray;
+    color: black;
+    pointer-events: none;
+}
+
+.button.btn_itemAdded:hover {
+    background-color: rgb(144, 230, 24);
+}
+
+.button.btn-del {
+    background-color: rgb(216, 159, 159);
+}
+
+
+.button.btn-del:hover {
+    background-color: rgb(201, 33, 33);
+    width: 82px;
+}
+
+.button.btn-del::after {
+    content: "X";
+    margin-left: 18px;
+    color: red;
+}
+

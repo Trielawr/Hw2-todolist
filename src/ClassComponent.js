@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import AddListItems from './AddListItems';
 import ButtonComponent from './ButtonComponent';
-import styles from './Components.module.css';
-
-
+import styles from './Components.module.scss';
+import SelectComponent from "./SelectComponent";
 
 class ClassComponent extends Component {
     state = {
         uuid: 0,
         todos: [],
         input: "new task", 
-        listState : 'false',
+        selectOptions: 'all'
     }
 
     componentDidMount() {
@@ -35,7 +34,6 @@ class ClassComponent extends Component {
         this.setState({ uuid: crypto.randomUUID() });
         this.setState({ todos: [...this.state.todos, {id: this.state.uuid, todo: this.state.input}] });
         this.setState({ input: "new task" });
-        this.setState({listState: 'true'});
     }
 
     onDeleteHandler = (id) => {
@@ -46,7 +44,6 @@ class ClassComponent extends Component {
     componentWillUnmount() {
         localStorage.clear();
         this.setState({ todos: [] });
-        this.setState({listState: 'false'});
     }
 
     render() {
@@ -59,18 +56,17 @@ class ClassComponent extends Component {
                        onChange={this.onChangeHandler}
                    /> 
                    <ButtonComponent
-                       aditionalclassName='btn-itemAdded'
+                       aditionalclassName={'btn_itemAdded'}
                        type="button"
                        text="Add Todo"
                        onClick={this.onClickHandler}
                    />
                    <p>Кількість елементів в списку - {this.state.todos.length}</p>
-                   <ul className={`${this.state.todos.length === 0 ? styles.list.empty : styles.list}`}>
-                       {console.log("body",this.state.todos.length)}
+                   <ul className={`${this.state.todos.length === 0 ? styles.empty : styles.list}`}>
                       {this.state.todos.map(element =>
                           <AddListItems key={element.id} id={element.id} element={element.todo}>
                               <ButtonComponent
-                               aditionalclassName='btn-del'
+                               aditionalclassName={'btn-del'}
                                type="button"
                                text="Delete"
                                onClick={() => this.onDeleteHandler(element.id)}
@@ -85,6 +81,12 @@ class ClassComponent extends Component {
                        text="Clear Todo List"
                        onClick={() => this.componentWillUnmount()}
                    />
+                <SelectComponent
+                    selectOptions={ this.state.selectOptions }
+                    setSelectOptions={ this.setSelectOptions}
+                    items={ this.state.items }
+                    setItems = { this.setItems }
+                />
                </div>
           </>
         )
