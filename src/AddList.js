@@ -1,13 +1,19 @@
 import React from 'react';
-import {useMemo } from "react";
+import { useMemo , useState } from "react";
 import AddListItems from "./AddListItems";
 import ButtonComponent from "./ButtonComponent";
-import './ItemsComponents.scss';
+import ModalContent from "./ModalContent";
+import './AddList.scss';
+import axios from 'axios';
 
 
 const AddList = ({ items, setItems, selectOptions }) => {
 
-    const deleteListItems = (id) => {
+    const [isModalOpen, setModalOpen] = useState(false);
+    const [modalId, setModalId] = useState("");
+
+    const deleteListItems = async (id) => {
+        await axios.delete(`http://localhost:3040/todos/${id}`);
         const newItems = items.filter(item => item.id !== id);
         setItems(newItems);
     };
@@ -35,25 +41,49 @@ const AddList = ({ items, setItems, selectOptions }) => {
     };
 
   return (
-      <div className={ `${(visibleTodos.length === 0) ? 'list-empty' : 'list-border' }` }>
+      <div className={ `${(visibleTodos.length === 0) ? 'list-empty' : 'list-border'}` }>
           <ul className='list-item' > 
-                  { visibleTodos.map((element) => (
-                      <AddListItems 
-                          key={ element.id }
-                          id={ element.id }
-                          element={ element.name }
-                          checked={ element.checked }
-                          onChange = { ()=> onChangeCheckbox(element.id) }
-                      >
-                      { <ButtonComponent
+                { visibleTodos.map((element) => (
+                    <AddListItems 
+                        key={ element.id }
+                        id={ element.id }
+                        discription = { element.discription }
+                        title ={ element.title }
+                        checked={ element.checked }
+                        onChange = { ()=> onChangeCheckbox(element.id) }
+                    >
+                       { <ButtonComponent
+                          aditionalclassName='btn-edit'
+                          type='button'
+                          text='Edit'
+                          onClick={ () => {
+                               setModalId(element.id);
+                              setModalOpen(true);
+                              } }
+                         /> }
+                       { <ButtonComponent
                            aditionalclassName='btn-del'
                            type='button'
                            text='Delete'
-                           onClick={() => deleteListItems(element.id)}
-                          /> }
+                           onClick={ () => deleteListItems(element.id) }
+                          />}
                     </AddListItems>
-                  )) }
-                </ul>
+                  ))
+                }
+                  {modalId && 
+                      <ModalContent
+                          id={ modalId }
+                          items={ items }
+                          setItems={ setItems }
+                          isOpen = { isModalOpen }
+                          onClose={() => {
+                              setModalOpen(false);
+                              setModalId('');
+                             }
+                          }
+                       />    
+                   }
+            </ul>
     </div>
   )
 }

@@ -1,0 +1,21 @@
+.item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.checked {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.unchecked {
+    text-decoration: none;
+    color: white;
+}
+
+.checkbox {
+    margin: 0px 30px 0px 0px;
+}

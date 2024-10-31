@@ -1,17 +1,18 @@
 import React from 'react'
 import AddList from "./AddList";
-import './ItemsComponents.scss';
+import './SelectComponent.scss';
+import './InputComponent.scss'
 
 const SelectComponent = ({ selectOptions, setSelectOptions, items, setItems }) => {
-
-    const onChangeSelectOptions = (e) => {
-        setSelectOptions(e.target.value);
-    }
 
  return (
      <div >
          < div className='select'>
-            <select value={ selectOptions } onChange={ onChangeSelectOptions } >
+            <p className='select-title'>Фільтр списку завдань</p>
+             <select
+                 className='select-filter'
+                 value={ selectOptions }
+                 onChange={ (e) => setSelectOptions(e.target.value) }>
                     <option value='all' >Всі</option>
                     <option value='ended'>Завершені</option>
                     <option value='active'>Активні</option>

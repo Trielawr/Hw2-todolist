@@ -1,0 +1,33 @@
+.modal {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba($color: rgb(202, 202, 202), $alpha: 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: rgb(56, 56, 56);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px;
+    border-color: black;
+}
+
+.modal-content_btn_edit {
+    background-color: lightgreen;
+    border: none;
+    justify-content: flex-end;
+}
+
+.button.modal_btn_close {
+    justify-content: flex-end;
+    background-color: rgb(233, 126, 126);
+    transform: translate3d(170px, -20px, 10px);
+    width: 25px;
+    
+}
