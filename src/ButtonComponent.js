@@ -1,8 +1,15 @@
 import React from 'react'
 
-function ButtonComponent(props) {
+
+function ButtonComponent({ aditionalclassName, type, onClick, text }) {
+  
+  console.log(`button ${aditionalclassName}`);
   return (
-    <button type={props.type} onClick={props.onClick}>{props.text}</button>
+    <button
+      className={ `button ${aditionalclassName}` }
+      type={ type }
+      onClick={ onClick }>
+      { text }</button>
     )
 }
 
